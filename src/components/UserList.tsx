@@ -8,6 +8,7 @@ export const UserList: React.FC = () => {
 
   useEffect(() => {
     fetchUsers();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -17,7 +18,6 @@ export const UserList: React.FC = () => {
       {users.map((user) => (
         <div key={user.id}>{user.name}</div>
       ))}
-      <h2>asdasdhkhk</h2>
     </div>
   );
 };

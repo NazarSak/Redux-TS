@@ -8,14 +8,17 @@ const initialState: TodoState = {
   limit: 10,
 };
 
-export const TodoReducer = (state = initialState, action: TodoAction) => {
+export const TodoReducer = (
+  state = initialState,
+  action: TodoAction
+): TodoState => {
   switch (action.type) {
     case TodoActionTypes.FETCH_TODOS:
-      return { ...state, loading: true };
+      return { ...state, loading: true, todos: [] };
     case TodoActionTypes.FETCH_TODOS_SUCCESS:
-      return { ...state, todos: action.payload };
+      return { ...state, loading: false, todos: action.payload };
     case TodoActionTypes.FETCH_TODOS_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, loading: false, error: action.payload };
     case TodoActionTypes.SET_TODO_PAGE:
       return { ...state, page: action.payload };
     default:
