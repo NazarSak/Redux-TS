@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { useActions } from "../hooks/useActions";
+import { Spinner } from "../helpers/loader";
 
 export const TodoList = () => {
   const { fetchTodos, setTodoPage } = useActions();
@@ -17,28 +18,26 @@ export const TodoList = () => {
 
   return (
     <>
-      {loading && <h2>Loading...</h2>}
+      {loading && <Spinner />}
       {error && <h2>Something went wrong</h2>}
-      <div>
-        {todos.map((todo) => (
-          <div key={todo.id}>
-            <h2>{todo.title}</h2>
-          </div>
-        ))}
+      {todos.map((todo) => (
+        <div key={todo.id}>
+          <h2>{todo.title}</h2>
+        </div>
+      ))}
 
-        {pages.map((p) => (
-          <div
-            onClick={() => setTodoPage(p)}
-            style={{
-              border: p === page ? "2px solid green" : "1px solid gray",
-              padding: 10,
-            }}
-          >
-            {p}
-          </div>
-        ))}
-
-      </div>
+      {pages.map((p) => (
+        <div
+          key={p}
+          onClick={() => setTodoPage(p)}
+          style={{
+            border: p === page ? "2px solid green" : "1px solid gray",
+            padding: 10,
+          }}
+        >
+          {p}
+        </div>
+      ))}
     </>
   );
 };
