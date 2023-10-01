@@ -9,6 +9,7 @@ export const fetchUsers = () => {
       const response = await axios.get(
         "https://jsonplaceholder.typicode.com/users"
       );
+      console.log(response.data);
       dispatch({
         type: UserActionTypes.FETCH_USERS_SUCCESS,
         payload: response.data,
